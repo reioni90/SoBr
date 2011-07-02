@@ -1,3 +1,10 @@
+/*
+ *	This program reads in all of the *.js files inside of the src
+ *	directory and compiles them all into one file for ease of
+ *	deployment of SoBr.
+ *
+ *	Author: Douglas Schneider
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,7 +12,7 @@
 #define FILES "files.txt"
 #define FIND_COMMAND "find src -type f > files.txt"
 #define MAX_SIZE 500
-#define OUTPUT_FILE "main.js"
+#define OUTPUT_FILE "SoBrMain.js"
 
 void processFile(char * fileName);
 void killAll(char * error);

@@ -1,0 +1,17 @@
+{
+	"nodes": [node1, node2, etc],
+	"edges": [edge1, edge2, etc]
+}
+
+node =	{
+			"id": "uniqueID",
+			"name": "name",
+			"image": "imageFormatandName(see below)"
+		}
+
+edge =	{
+			"from": "idOfFromNode",
+			"to": "idOfToNode"
+		}
+
+TODO: imageFormatandName
