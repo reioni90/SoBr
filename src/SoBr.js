@@ -19,8 +19,12 @@ function SoBr(canvas, dataMode, data)
 {
 	this.canvas = canvas;
 	this.context = canvas.getContext("2d");
-	this.graph = new Graph();
 
+	// prepare the graph
+	this.graph = new Graph();
+	this.graph.vgraph.setNodeRenderer(new BaseNodeRenderer(this.context));
+
+	// initialize the graph from the input data
 	if(dataMode == "JSON")
 		this.graph.initFromJSON(data);
 	else
@@ -28,4 +32,6 @@ function SoBr(canvas, dataMode, data)
 		console.error("You have provided an invalid dataMode to SoBr");
 		die();
 	}
+
+	this.graph.vgraph.refresh();
 }

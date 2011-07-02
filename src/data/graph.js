@@ -11,6 +11,8 @@ function Graph()
 {
 	this.nodes = {};
 	this.edges = {};
+
+	this.vgraph = new VisualGraph(this.nodes, this.edges);
 }
 
 Graph.prototype.initFromJSON =
@@ -30,7 +32,7 @@ function(json)
 Graph.prototype.addNode =
 function(id, name, imageName)
 {
-	if(this.nodes[i])
+	if(this.nodes[id])
 		console.warn("Adding a new node to the graph with an id already in use");
 	this.nodes[id] = new Node(id, name, imageName);
 };
@@ -39,7 +41,7 @@ Graph.prototype.addEdge =
 function(from, to)
 {
 	var edgeid = from + "|" + to;
-	if(!this.nodes[from] || !nodes[to])
+	if(!this.nodes[from] || !this.nodes[to])
 		console.warn("One of the nodes required by an edge being added is not in the graph");
 	if(this.edges[edgeid])
 		console.warn("An edge that already exists is being replaced");

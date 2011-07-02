@@ -7,7 +7,10 @@
 	<canvas id="SoBrCanvas" width="1024" height="480"></canvas>
 		<script type="text/javascript">
 			var canvas = document.getElementById("SoBrCanvas");
-			var graph = new SoBr(canvas, "none", "FIXTHIS");
+			var json = "{\"nodes\": [{\"id\": \"0\", \"name\": \"first\", \"image\": \"none\"}, " +
+"{\"id\": \"1\", \"name\": \"second\", \"image\": \"none\"}], \"edges\": [{\"from\": \"0\", \"to\":"+ 
+"\"1\"}]}";
+			var graph = new SoBr(canvas, "JSON", json);
 		</script>
 </body>
 </html>
