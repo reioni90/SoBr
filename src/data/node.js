@@ -21,6 +21,7 @@
  */
 function Node(id, name, imageName)
 {
+	//TODO: handle undefined variables
 	this.id = id;
 	this.name = name;
 

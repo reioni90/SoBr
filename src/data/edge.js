@@ -13,9 +13,9 @@
  *
  *	Params:
  *
- *		from - The Node that this edge runs from.
+ *		from - The id of the Node that this edge runs from.
  *
- *		to - The node that this edge runs to.
+ *		to - The id of the Node that this edge runs to.
  */
 function Edge(from, to)
 {

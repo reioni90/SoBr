@@ -10,7 +10,7 @@
 #include <string.h>
 
 #define FILES "files.txt"
-#define FIND_COMMAND "find src -type f > files.txt"
+#define FIND_COMMAND "find src -type f -name \"*.js\" > files.txt"
 #define MAX_SIZE 500
 #define OUTPUT_FILE "SoBrMain.js"
 
