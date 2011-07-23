@@ -1,3 +1,10 @@
 SoBr(Social Browser) pronounced sober is a graphical browser written in javascript for HTML5. It is designed to
 graphically browse networks of nodes and edges. SoBr is given an HTML5 canvas element and uses the
 canvas to draw in the browser.
+
+RUNNING
+
+To run the program first you must run the make file with the command 'make'. This will compile
+compile.c and run the resulting executable which creates the maine .js file. Now that you have the
+.js file you can open index.html and view the resulting Social Browser. You can also create your own
+.html file using the example as a reference or a base for the new one.
