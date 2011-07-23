@@ -2,7 +2,7 @@
  *	This file contains any top level miscellaneous functions that
  *	a large amount of the program will be using.
  *
- *	Author: Douglas Schneider
+ *	Author: Douglas Schneider <ds3@ualberta.ca>
  */
 
 /*

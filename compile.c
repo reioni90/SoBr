@@ -3,7 +3,7 @@
  *	directory and compiles them all into one file for ease of
  *	deployment of SoBr.
  *
- *	Author: Douglas Schneider
+ *	Author: Douglas Schneider <ds3@ualberta.ca>
  */
 #include <stdio.h>
 #include <stdlib.h>

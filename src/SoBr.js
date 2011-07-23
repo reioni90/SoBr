@@ -3,7 +3,7 @@
  *	getting it running. As well all of the global variables are set up inside
  *	of the Object.SoBr object.
  *
- *	Author: Douglas Schneider
+ *	Author: Douglas Schneider <ds3@ualberta.ca>
  */
 
 /*

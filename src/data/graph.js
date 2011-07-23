@@ -4,7 +4,7 @@
  *	Graph class is in charge of creating and managing the visual
  *	representation of the graph a.k.a the VisualGraph.
  *
- *	Author: Douglas Schneider
+ *	Author: Douglas Schneider <ds3@ualberta.ca>
  */
 
 function Graph()
@@ -46,4 +46,28 @@ function(from, to)
 	if(this.edges[edgeid])
 		console.warn("An edge that already exists is being replaced");
 	this.edges[edgeid] = new Edge(from, to);
+};
+
+/*
+ *	Returns an array of all the nodes directly adjacent to the supplied node.
+ *
+ *	Params:
+ *
+ *	root - The root node to get all the adjacent nodes of.
+ */
+Graph.prototype.getAdjacentNodes =
+function(root)
+{
+	var adjacentNodes = new Array();
+	for(var edge in this.edges)
+	{
+		if(edge.fromNode === root)
+			adjacentNodes.add(edge.toNode);
+		else if(edge.toNode === root)
+			adjacentNodes.add(edge.fromNode);
+	}
+
+	return adjacentNodes;
+
+	//TODO DOUBLE CHECK
 };

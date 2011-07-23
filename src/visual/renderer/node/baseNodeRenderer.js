@@ -3,7 +3,7 @@
  *	x and y coordinates represented by a circle of the given color and radius or default values if
  *	none are given.
  *	
- *	Author: Douglas Schneider
+ *	Author: Douglas Schneider <ds3@ualberta.ca>
  */
 
 /*

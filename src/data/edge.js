@@ -5,7 +5,7 @@
  *	nodes as well as any extra information regarding the edge in the graph
  *	that is provided by the user.
  *
- *	Author: Douglas Schneider
+ *	Author: Douglas Schneider <ds3@ualberta.ca>
  */
 
 /*
@@ -19,6 +19,6 @@
  */
 function Edge(from, to)
 {
-	this.from = from;
-	this.to = to;
+	this.fromNode = from;
+	this.toNode = to;
 }

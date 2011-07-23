@@ -4,7 +4,7 @@
  *	to represent the Node both as a data structure and create a visual
  *	representation of itself.
  *
- *	Author: Douglas Schneider
+ *	Author: Douglas Schneider <ds3@ualberta.ca>
  */
 
 /*
