@@ -1,4 +1,5 @@
 {
+	"rootNode" : "node.id",
 	"nodes": [node1, node2, etc],
 	"edges": [edge1, edge2, etc]
 }

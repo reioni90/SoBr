@@ -18,6 +18,7 @@ function Graph()
 Graph.prototype.initFromJSON =
 function(json)
 {
+	//TODO: check to see if the JSON is malformed.
 	var data = JSON.parse(json);
 	var i;
 	var nodes = data.nodes;
@@ -27,6 +28,9 @@ function(json)
 		this.addNode(nodes[i].id, nodes[i].name, nodes[i].imageName);
 	for(i = 0; i < edges.length; i++)
 		this.addEdge(edges[i].from, edges[i].to);
+
+	// set the root node for the graph and vgraph.
+	this.setRootNode(this.nodes[data.rootNode]);
 };
 
 Graph.prototype.addNode =
@@ -41,11 +45,17 @@ Graph.prototype.addEdge =
 function(from, to)
 {
 	var edgeid = from + "|" + to;
+
 	if(!this.nodes[from] || !this.nodes[to])
 		console.warn("One of the nodes required by an edge being added is not in the graph");
 	if(this.edges[edgeid])
 		console.warn("An edge that already exists is being replaced");
-	this.edges[edgeid] = new Edge(from, to);
+
+	// create a new edge and set all it's dependants to it.
+	var edge = new Edge(this.nodes[from], this.nodes[to]);
+	this.edges[edgeid] = edge;
+	this.nodes[from].addOutEdge(edge);
+	this.nodes[to].addInEdge(edge);
 };
 
 /*
@@ -61,13 +71,35 @@ function(root)
 	var adjacentNodes = new Array();
 	for(var edge in this.edges)
 	{
-		if(edge.fromNode === root)
-			adjacentNodes.add(edge.toNode);
-		else if(edge.toNode === root)
-			adjacentNodes.add(edge.fromNode);
+		if(edges[edge].fromNode === root)
+			adjacentNodes.add(edges[edge].toNode);
+		else if(edges[edge].toNode === root)
+			adjacentNodes.add(edges[edge].fromNode);
 	}
 
 	return adjacentNodes;
 
 	//TODO DOUBLE CHECK
+};
+
+/*
+ *	Set the root node of this graph, as well as this graphs vgraph to the supplied rootNode.
+ *
+ *	If the supplied root node is null the the program dies with an error.
+ *
+ *	Params:
+ *	
+ *	rootNode - The root node to set for this graph and it's vgraph.
+ */
+Graph.prototype.setRootNode =
+function(rootNode)
+{
+	if(rootNode === null)
+	{
+		console.warn("Tried to set the graphs root node to null.");
+		die();
+	}
+
+	this.rootNode = rootNode;
+	this.vgraph.rootNode = rootNode;
 };

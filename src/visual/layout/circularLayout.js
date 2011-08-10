@@ -5,13 +5,25 @@
  *	Author: Douglas Schneider <ds3@ualberta.ca>
  */
 
-function CircularLayout()
+function CircularLayout(vgraph, radius)
 {
-
+	this.vgraph = vgraph;
+	this.radius = radius;
+	this.doneDrawing = true;
 }
 
-CircularLayout.prototype.draw = 
-function(vgraph)
+CircularLayout.prototype.layout = 
+function(visibleNodes)
 {
+	// if all of the nodes have already completed drawing then stop
+	if(this.doneDrawing)
+		return;
 
+	var i;
+	for(i = 0; i < this.vgraph.visibleNodes.length; i++)
+	{
+		//TODO: set the actual x and y coordinates
+		this.vgraph.visibleNodes[i].vnode.x = (i+1)*10;
+		this.vgraph.visibleNodes[i].vnode.y = (i+1)*20;
+	}
 };

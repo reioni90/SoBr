@@ -25,5 +25,36 @@ function Node(id, name, imageName)
 	this.id = id;
 	this.name = name;
 
+	// keep track of incident edges.
+	this.inEdges = new Array();
+	this.outEdges = new Array();
+
 	this.vnode = new VisualNode(imageName);
 }
+
+Node.prototype.getAdjacentNodes = 
+function()
+{
+	var i;
+	var j = 0;
+	var adjacentNodes = new Array();
+
+	for(i = 0; i < this.inEdges.length; i++)
+		adjacentNodes[j++] = this.inEdges[i].fromNode;
+	for(i = 0; i < this.outEdges.length; i++)
+		adjacentNodes[j++] = this.outEdges[i].toNode;
+
+	return adjacentNodes;
+};
+
+Node.prototype.addInEdge =
+function(edge)
+{
+	this.inEdges.push(edge);
+};
+
+Node.prototype.addOutEdge =
+function(edge)
+{
+	this.outEdges.push(edge);
+};

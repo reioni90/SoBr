@@ -12,8 +12,6 @@
  *	complete the browser is started.
  *
  * TODO: finish commenting of this constructor.
- *
- *	Author: Douglas Schneider
  */
 function SoBr(canvas, dataMode, data)
 {
@@ -22,7 +20,13 @@ function SoBr(canvas, dataMode, data)
 
 	// prepare the graph
 	this.graph = new Graph();
+
+	// set the node Renderer
 	this.graph.vgraph.setNodeRenderer(new BaseNodeRenderer(this.context));
+
+	// set the layouter
+	//TODO: set the radius of the layouter to the width of the canvas.
+	this.graph.vgraph.setLayouter(new CircularLayout(this.graph.vgraph, 50));
 
 	// initialize the graph from the input data
 	if(dataMode == "JSON")

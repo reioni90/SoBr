@@ -4,13 +4,12 @@
  *
  *	Author: Douglas Schneider <ds3@ualberta.ca>
  */
-function VisualGraph(graph, nodes, edges)
+function VisualGraph(nodes, edges)
 {
-	this.graph = graph; //TODO: this could cause an overflow due to vgraph and graph referencing
 	//each other DOUBLE CHECK
 	this.nodes = nodes;
 	this.edges = edges;
-	this.visualNodes = new Array(); //TODO DOUBLE CHECK
+	this.visibleNodes = new Array();
 }
 
 VisualGraph.prototype.setNodeRenderer =
@@ -26,12 +25,16 @@ VisualGraph.prototype.refresh =
 function()
 {
 	var node;
-	for(node in this.nodes)
-		this.nodeRenderer.drawNode(this.nodes[node].vnode);
+	var i;
+
+	this.populateVisibleNodes();
+	this.layouter.layout();
+	for(i = 0; i < this.visibleNodes.length; i++)
+		this.nodeRenderer.drawNode(this.visibleNodes[i].vnode);
 };
 
 /*
- *	Set the root node of the visual graph as well as populate the visualNodes list
+ *	Set the root node of the visual graph as well as populate the visibleNodes list
  */
 VisualGraph.prototype.setRootNode =
 function(node)
@@ -40,7 +43,7 @@ function(node)
 };
 
 /*
- *	Populate the visualNodes list based on the current rootNode. The list is populated with all the
+ *	Populate the visibleNodes list based on the current rootNode. The list is populated with all the
  *	nodes within the first n degrees where n is specified as a parameter.
  *
  *	Params:
@@ -49,22 +52,38 @@ function(node)
  *		value is 1. If a value is not supplied or a value less than 1 is supplied then 1 is
  *		assigned.
  */
-VisualGraph.prototype.populateVisualNodes =
+VisualGraph.prototype.populateVisibleNodes =
 function(degree)
 {
 	var root;
-	var adjacentNodes;
+	var adjacentNodes = new Array();
 
 	if(degree === null || degree < 1)
 	{
-		console.warn("A null or negative value was given for degree on a call to VisualGraph.prototype.populateVisualNodes");
+		console.warn("A null or non-positive value was given for degree on a call to VisualGraph.prototype.populateVisualNodes");
 		degree = 1;
 	}
 
 	root = this.rootNode;
-	adjacentNodes = this.graph.getAdjacentNodes(root);
-	// append nodes the the visualNodes list and iterate through new nodes if degree requires so.
+	adjacentNodes.push(root);
+	adjacentNodes = adjacentNodes.concat(root.getAdjacentNodes());
+	// append nodes the the visibleNodes list and iterate through new nodes if degree requires so.
+
+
+	//TODO: remove
+	var i;
+	for(i = 0; i < adjacentNodes.length; i++)
+		this.visibleNodes[i] = adjacentNodes[i];
+	//TODO: remove
+
 
 	//TODO: FINISH
 	//TODO: DOUBLE CHECK
+};
+
+VisualGraph.prototype.setLayouter = 
+function(layouter)
+{
+	this.layouter = layouter;
+	this.layouter.doneDrawing = false;
 };
