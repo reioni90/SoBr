@@ -6,7 +6,6 @@
  */
 function VisualGraph(nodes, edges)
 {
-	//each other DOUBLE CHECK
 	this.nodes = nodes;
 	this.edges = edges;
 	this.visibleNodes = new Array();

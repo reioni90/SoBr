@@ -26,14 +26,15 @@ function SoBr(canvas, dataMode, data)
 
 	// set the layouter
 	//TODO: set the radius of the layouter to the width of the canvas.
-	this.graph.vgraph.setLayouter(new CircularLayout(this.graph.vgraph, 50));
+	this.graph.vgraph.setLayouter(new CircularLayout(this.graph.vgraph, Math.min(canvas.width/2,
+					canvas.height/2), canvas.width/2, canvas.height/2));
 
 	// initialize the graph from the input data
 	if(dataMode == "JSON")
 		this.graph.initFromJSON(data);
 	else
 	{
-		console.error("You have provided an invalid dataMode to SoBr");
+		console.error("You have provided an invalid data input mode to SoBr");
 		die();
 	}
 
